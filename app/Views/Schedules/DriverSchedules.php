@@ -49,29 +49,34 @@
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
+
         var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: ['interaction', 'dayGrid'],
-            defaultDate: '2020-02-12',
+            defaultDate: new Date(),
             editable: true,
             eventLimit: true, // allow "more" link when too many events,
             eventColor: 'transparent',
-            events: [{
-                    id: '1',
-                    title: 'Event 1',
-                    start: '2020-02-12T10:00:00',
-                    end: '2020-02-12T12:00:00',
-                    backgroundColor: 'grey',
-                    description: 'Event 1 Details: Start: 10:00 AM, End: 12:00 PM'
-                },
-                {
-                    id: '2',
-                    title: 'Event 2',
-                    start: '2020-02-13T10:00:00',
-                    end: '2020-02-13T12:00:00',
-                    backgroundColor: 'lightblue',
-                    description: 'Event 2 Details: Start: 10:00 AM, End: 12:00 PM'
-                }
+            events: [
+                <?php foreach ($Schedules as $schedule) : ?> {
+                        id: '<?= $schedule->ID; ?>',
+                        title: '<?= $schedule->Name; ?>',
+                        start: '<?= $schedule->Departure; ?>',
+                        end: '<?= $schedule->Return; ?>',
+                        backgroundColor: '<?= $schedule->Color; ?>',
+                        description: '<?= $schedule->Description; ?>'
+                    },
+                <?php endforeach; ?>
             ],
+            dayRender: function(info) {
+                if (info.date.getDay() === 6) {
+                    info.el.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+                }
+                if (info.date.getDay() === 0) {
+                    info.el.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+                }
+            },
+
+
             eventClick: function(info) {
                 var modalTitle = document.getElementById('modalTitle');
                 var modalBody = document.getElementById('modalBody');
@@ -81,7 +86,7 @@
 
                 // Set judul dan detail event pada modal
                 modalTitle.innerHTML = event.title;
-                modalBody.innerHTML = 'Start: ' + event.start + '<br>End: ' + event.end + '<br>Description: ' + event.extendedProps.description;
+                modalBody.innerHTML = 'Start: ' + new Date(event.start).toLocaleDateString('en-GB') + '<br>End: ' + new Date(event.end).toLocaleDateString('en-GB') + '<br>Description: ' + event.extendedProps.description;
 
                 // Tampilkan modal
                 var eventModal = new bootstrap.Modal(document.getElementById('eventModal'), {});

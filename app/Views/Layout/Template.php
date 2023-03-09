@@ -45,7 +45,7 @@
                     <div class="nav">
                         <a class="sb-sidenav-footer nav-link" href="#">
                             <img class="sb-nav-link-icon" src="assets/assets/img/default.png" width="25px" height="25px" alt="User Profile Picture">
-                            <?= session('Nama'); ?><br> <?= session('Email'); ?> <br><?= session('Divisi'); ?>
+                            <?= session('Name'); ?><br> <?= session('Email'); ?> <br><?= session('Divisi'); ?>
                         </a>
                         <div class="sb-sidenav-menu-heading">Core</div>
                         <a class="nav-link" href="/">

@@ -35,7 +35,7 @@ class AuthController extends BaseController
         if ($Email) {
             $session = [
                 'Email' => $Email[0]->Email,
-                'Nama' => $Email[0]->Nama,
+                'Name' => $Email[0]->Name,
                 'Divisi' => $Email[0]->Divisi,
             ];
 

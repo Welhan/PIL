@@ -242,6 +242,7 @@ temporary rendered events).
   -webkit-overflow-scrolling: touch;
 }
 
+
 /* TODO: move to timegrid/daygrid */
 .fc-scroller > .fc-day-grid,
 .fc-scroller > .fc-time-grid {
@@ -580,7 +581,13 @@ TODO: more distinction between this file and common.css
 }
 
 .fc-unthemed td.fc-today {
-  background: #40e0d0;
+  color : blue;
+  font-size: 24px;
+  font-weight: bold;
+}
+.fc-unthemed td.fc-holiday {
+  color : red;
+  font-weight: bold;
 }
 
 .fc-unthemed .fc-disabled-day {

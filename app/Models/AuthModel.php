@@ -7,9 +7,9 @@ use CodeIgniter\Model;
 class AuthModel extends Model
 {
     protected $table            = 'users';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
-    protected $allowedFields    = ['Nama', 'Alamat', 'Jabatan', 'Divisi', 'NoHP', 'JenisKelamin', 'GolonganDarah', 'Email', 'Password', 'Level', 'Active', 'DateAdded', 'UserAdded', 'DateUpdate', 'UserUpdate'];
+    protected $allowedFields    = ['Name', 'Alamat', 'Jabatan', 'Divisi', 'NoHP', 'JenisKelamin', 'GolonganDarah', 'Email', 'Password', 'Level', 'Active', 'DateAdded', 'UserAdded', 'DateUpdate', 'UserUpdate'];
 
 
     public function getUser($Email = "")

@@ -22,7 +22,15 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="" method="POST">
+                                <form action="/addDocuments" method="POST">
+                                    <div class="mb-3">
+                                        <label for="User" class="col-form-label">User</label>
+                                        <input type="text" class="form-control" value="<?= session('Nama'); ?>" name="User" id="User" readonly>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="Email" class="col-form-label">Email</label>
+                                        <input type="email" class="form-control" value="<?= session('Email'); ?>" name="Email" id="Email" readonly>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="Driver" class="col-form-label">Driver</label>
                                         <select name="Driver" class="form-select">
@@ -60,12 +68,12 @@
                                         <label for="Description" class="col-form-label">Description</label>
                                         <input type="text" class="form-control" name="Description" id="Description">
                                     </div>
-                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -97,16 +105,18 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>Santoso</td>
-                            <td>Jakarta</td>
-                            <td>10 Februari 2023 / 08:00:00</td>
-                            <td>10 Februari 2023 / 16:00:00</td>
-                            <td>B 1245 CCC</td>
-                            <td>Kijang Innova Zenix</td>
-                            <td>John Locke</td>
-                            <td>Kunjungan Kerja</td>
-                        </tr>
+                        <?php foreach ($Documents as $Document) : ?>
+                            <tr>
+                                <td><?= $Document->Name ?></td>
+                                <td><?= $Document->Destination ?></td>
+                                <td><?= $Document->Departure ?></td>
+                                <td><?= $Document->Return ?></td>
+                                <td><?= $Document->PoliceNo ?></td>
+                                <td><?= $Document->Vehicle ?></td>
+                                <td><?= $Document->User ?></td>
+                                <td><?= $Document->Description ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

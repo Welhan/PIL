@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Controllers\DocumentsController;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -41,6 +43,8 @@ $routes->get('/order-list', 'OrderController::orderList');
 $routes->get('/driver-schedules', 'SchedulesController::driverSchedules');
 $routes->get('/documents', 'DocumentsController::Documents');
 $routes->get('/invoices', 'InvoicesController::Invoices');
+
+$routes->post('/addDocuments', 'DocumentsController::addDocuments');
 
 /*
  * --------------------------------------------------------------------

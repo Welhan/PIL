@@ -36,13 +36,13 @@ function generateMenu($user_id)
     $db = \config\Database::connect();
 
     $builder = $db->table('user_access_menu');
-    $builder->select('DISTINCT(user_access_menu.menu_id), mst_menu.menu');
-    $builder->join('mst_menu', 'mst_menu.id = user_access_menu.menu_id');
-    $builder->join('mst_sub_menu', 'mst_sub_menu.id = user_access_menu.submenu_id');
-    $builder->where(['user_access_menu.user_id' => $user_id]);
-    $builder->where(['user_access_menu.flag_view' => 1]);
-    $builder->where(['mst_sub_menu.active' => 1, 'Type' => 'Side']);
-    $builder->orderBy('mst_menu.id', 'ASC');
+    $builder->select('DISTINCT(user_access_menu.MenuID), mst_menu.Menu');
+    $builder->join('mst_menu', 'mst_menu.ID = user_access_menu.MenuID');
+    $builder->join('mst_submenu', 'mst_submenu.ID = user_access_menu.SubmenuID');
+    $builder->where(['user_access_menu.UserID' => $user_id]);
+    $builder->where(['user_access_menu.View' => 1]);
+    $builder->where(['mst_submenu.Active' => 1, 'Type' => 'Side']);
+    $builder->orderBy('mst_menu.ID', 'ASC');
 
     return $builder->get()->getResultObject();
 }
@@ -51,14 +51,25 @@ function generateSubmenu($menu_id, $user_id = '')
 {
     $db = \config\Database::connect();
 
-    $builder = $db->table('mst_sub_menu');
-    $builder->select('mst_sub_menu.*');
+    $builder = $db->table('mst_submenu');
+    $builder->select('mst_submenu.*');
     if ($user_id) {
-        $builder->join('user_access_menu', 'mst_sub_menu.id = user_access_menu.submenu_id');
-        $builder->where(['mst_sub_menu.menu_id' => $menu_id, 'user_access_menu.flag_view' => 1, 'user_id' => $user_id]);
+        $builder->join('user_access_menu', 'mst_submenu.ID = user_access_menu.SubmenuID');
+        $builder->where(['mst_submenu.MenuID' => $menu_id, 'user_access_menu.View' => 1, 'UserID' => $user_id]);
     } else {
-        $builder->where('menu_id', $menu_id);
+        $builder->where('MenuID', $menu_id);
     }
+
+    return $builder->get()->getResultObject();
+}
+
+function generateOtherMenu()
+{
+    $db = \config\Database::connect();
+
+    $builder = $db->table('mst_submenu');
+    $builder->where(['mst_submenu.Active' => 1, 'Type' => 'Top']);
+    $builder->orderBy('mst_submenu.ID', 'ASC');
 
     return $builder->get()->getResultObject();
 }
