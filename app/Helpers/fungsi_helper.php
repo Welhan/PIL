@@ -57,7 +57,7 @@ function generateSubmenu($menu_id, $user_id = '')
         $builder->join('user_access_menu', 'mst_submenu.ID = user_access_menu.SubmenuID');
         $builder->where(['mst_submenu.MenuID' => $menu_id, 'user_access_menu.View' => 1, 'UserID' => $user_id]);
     } else {
-        $builder->where('MenuID', $menu_id);
+        $builder->where(['MenuID' => $menu_id, 'Type' => 'Side']);
     }
 
     return $builder->get()->getResultObject();

@@ -1,3 +1,7 @@
+<?php
+$menu = generateMenu(session('ID'));
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +13,9 @@
     <meta name="author" content="" />
     <title>PT. Pindad International Logistics</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <!-- Bootstrap 5 CSS -->
+    <link href="assets/bootstrap-5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Admin LTE CSS -->
     <link href="assets/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -47,35 +54,23 @@
                             <img class="sb-nav-link-icon" src="assets/assets/img/default.png" width="25px" height="25px" alt="User Profile Picture">
                             <?= session('Name'); ?><br> <?= session('Email'); ?> <br><?= session('Divisi'); ?>
                         </a>
-                        <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Menus</div>
-                        <a class="nav-link" href="/order-list">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
-                            Order List
-                        </a>
-                        <a class="nav-link" href="/driver-schedules">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-clipboard-list"></i></i></div>
-                            Driver Schedules
-                        </a>
-                        <a class="nav-link" href="/documents">
-                            <div class="sb-nav-link-icon"><i class="fa-regular fa-file"></i></div>
-                            Documents
-                        </a>
-                        <a class="nav-link" href="/invoices">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-invoice"></i></div>
-                            Invoices
-                        </a>
+                        <?php foreach ($menu as $m) : ?>
+                            <div class="sb-sidenav-menu-heading"><?= $m->Menu; ?></div>
+                            <?php $submenu = generateSubmenu($m->MenuID, session('ID')); ?>
+                            <?php foreach ($submenu as $s) : ?>
+                                <a class="nav-link <?= ($s->ID == $active) ? 'active' : ''; ?>" href="<?= $s->Link; ?>">
+                                    <div class="sb-nav-link-icon"><i class="<?= $s->Icon; ?>"></i></div>
+                                    <?= ucwords($s->Submenu); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer d-flex justify-content-center">
-                    <button type="button" href="/logout" class="text-center shadow col-lg-8 btn btn-danger rounded-pill">
+                    <a href="/logout" class="text-center shadow col-lg-8 btn btn-danger rounded-pill">
                         <i class="fa fa-sign-out-alt"></i>
                         <span>Log Out</span>
-                    </button>
+                    </a>
                 </div>
             </nav>
         </div>

@@ -3,17 +3,16 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\AuthModel;
-
+use App\Models\UserModel;
 
 class AuthController extends BaseController
 
 {
-    protected $AuthModel;
+    protected $userModel;
 
     public function __construct()
     {
-        $this->AuthModel = new AuthModel;
+        $this->userModel = new UserModel();
     }
 
     public function login()
@@ -30,12 +29,13 @@ class AuthController extends BaseController
         if (check_login(session('Email'))) return redirect()->to('/');
         $Email = $this->request->getPost('Email');
         $password = $this->request->getPost('Password') ? $this->request->getPost('Password') : '';
-        $Email = $this->AuthModel->where(['Email' => $Email, 'Password' => $password, 'Active' => 1])->find();
+        $Email = $this->userModel->where(['Email' => $Email, 'Password' => $password, 'Active' => 1])->find();
 
         if ($Email) {
             $session = [
+                'ID' => $Email[0]->ID,
                 'Email' => $Email[0]->Email,
-                'Name' => $Email[0]->Name,
+                'Name' => $Email[0]->Nama,
                 'Divisi' => $Email[0]->Divisi,
             ];
 
