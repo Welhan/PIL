@@ -35,7 +35,7 @@ $routes->get('/', 'Dashboard::index');
 
 //auth routes
 $routes->get('/login', 'AuthController::login');
-$routes->get('/logout', 'AuthController::logout');
+$routes->post('/logout', 'AuthController::logout');
 $routes->post('/auth-login', 'AuthController::auth');
 
 //page routes

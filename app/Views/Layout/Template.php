@@ -22,7 +22,7 @@ $topmenu = generateOtherMenu();
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
         <!-- Navbar Brand-->
         <nav class="navbar text-center">
             <a class="navbar-brand" href="/">
@@ -48,10 +48,10 @@ $topmenu = generateOtherMenu();
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <nav class="sb-sidenav accordion sb-sidenav-dark bg-success" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="sb-sidenav-footer nav-link" href="#">
+                        <a class="sb-sidenav-footer nav-link" href="/profile">
                             <img class="sb-nav-link-icon" src="assets/assets/img/default.png" width="25px" height="25px" alt="User Profile Picture">
                             <?= session('Name'); ?><br> <?= session('Email'); ?> <br><?= session('Divisi'); ?>
                         </a>
@@ -67,11 +67,11 @@ $topmenu = generateOtherMenu();
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="sb-sidenav-footer d-flex justify-content-center">
-                    <a href="/logout" class="text-center shadow col-lg-8 btn btn-danger rounded-pill">
+                <div class="sb-sidenav-footer d-flex justify-content-center bg-success">
+                    <button type="button" class="text-center shadow col-lg-8 btn btn-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="fa fa-sign-out-alt"></i>
                         <span>Log Out</span>
-                    </a>
+                    </button>
                 </div>
             </nav>
         </div>
@@ -91,6 +91,25 @@ $topmenu = generateOtherMenu();
             </footer>
         </div>
     </div>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary-subtle">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Logout?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/logout" method="post">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="assets/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
