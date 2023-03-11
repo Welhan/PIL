@@ -22,7 +22,7 @@ $topmenu = generateOtherMenu();
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
+    <nav class="sb-topnav navbar navbar-expand navbar-light" style="background-color: #D5F5E3">
         <!-- Navbar Brand-->
         <nav class="navbar text-center">
             <a class="navbar-brand" href="/">
@@ -48,7 +48,7 @@ $topmenu = generateOtherMenu();
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark bg-success" id="sidenavAccordion">
+            <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion" style="background-color: #D5F5E3">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <a class="sb-sidenav-footer nav-link" href="/profile">
@@ -67,7 +67,7 @@ $topmenu = generateOtherMenu();
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="sb-sidenav-footer d-flex justify-content-center bg-success">
+                <div class="sb-sidenav-footer d-flex justify-content-center" style="background-color: #D5F5E3">
                     <button type="button" class="text-center shadow col-lg-8 btn btn-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="fa fa-sign-out-alt"></i>
                         <span>Log Out</span>
@@ -76,7 +76,13 @@ $topmenu = generateOtherMenu();
             </nav>
         </div>
         <div id="layoutSidenav_content">
-            <?= $this->renderSection('content') ?>
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Dashboard</h1>
+
+                    <?= $this->renderSection('content') ?>
+                </div>
+            </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
