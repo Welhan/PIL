@@ -68,7 +68,7 @@ $topmenu = generateOtherMenu();
                     </div>
                 </div>
                 <div class="sb-sidenav-footer d-flex justify-content-center" style="background-color: #D5F5E3">
-                    <button type="button" class="text-center shadow col-lg-8 btn btn-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="text-center shadow col-lg-8 btn btn-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#logoutModal">
                         <i class="fa fa-sign-out-alt"></i>
                         <span>Log Out</span>
                     </button>
@@ -78,7 +78,7 @@ $topmenu = generateOtherMenu();
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Dashboard</h1>
+                    <h1 class="mt-4"><?= $title; ?></h1>
 
                     <?= $this->renderSection('content') ?>
                 </div>
@@ -99,7 +99,7 @@ $topmenu = generateOtherMenu();
     </div>
 
     <!-- Logout Modal -->
-    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-primary-subtle">
@@ -118,11 +118,14 @@ $topmenu = generateOtherMenu();
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="assets/js/scripts.js"></script>
+    <script src="assets/jquery/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/assets/demo/chart-area-demo.js"></script>
     <script src="assets/assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="assets/js/datatables-simple-demo.js"></script>
+
+    <?= $this->renderSection('javascript'); ?>
 </body>
 
 </html>

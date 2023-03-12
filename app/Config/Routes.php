@@ -46,6 +46,11 @@ $routes->get('/invoices', 'InvoicesController::Invoices');
 
 $routes->post('/addDocuments', 'DocumentsController::addDocuments');
 
+// User
+$routes->get('/user', 'User::index');
+$routes->post('/access', 'User::userAccess');
+$routes->post('/accessMenu', 'User::access');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

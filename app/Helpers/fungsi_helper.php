@@ -13,15 +13,13 @@ function checkAccess($userId, $submenu, $flag)
     $db = \config\Database::connect();
 
     if ($flag == 'view') {
-        $akses = $db->table('user_access_menu')->getWhere(['user_id' => $userId, 'submenu_id' => $submenu, 'flag_view' => 1])->getFirstRow();
+        $akses = $db->table('user_access_menu')->getWhere(['UserID' => $userId, 'SubmenuID' => $submenu, 'View' => 1])->getFirstRow();
     } else if ($flag == 'add') {
-        $akses = $db->table('user_access_menu')->getWhere(['user_id' => $userId, 'submenu_id' => $submenu, 'flag_add' => 1])->getFirstRow();
+        $akses = $db->table('user_access_menu')->getWhere(['UserID' => $userId, 'SubmenuID' => $submenu, 'Add' => 1])->getFirstRow();
     } else if ($flag == 'edit') {
-        $akses = $db->table('user_access_menu')->getWhere(['user_id' => $userId, 'submenu_id' => $submenu, 'flag_edit' => 1])->getFirstRow();
+        $akses = $db->table('user_access_menu')->getWhere(['UserID' => $userId, 'SubmenuID' => $submenu, 'Edit' => 1])->getFirstRow();
     } else if ($flag == 'delete') {
-        $akses = $db->table('user_access_menu')->getWhere(['user_id' => $userId, 'submenu_id' => $submenu, 'flag_delete' => 1])->getFirstRow();
-    } else if ($flag == 'control') {
-        $akses = $db->table('user_access_menu')->getWhere(['user_id' => $userId, 'submenu_id' => $submenu, 'flag_control' => 1])->getFirstRow();
+        $akses = $db->table('user_access_menu')->getWhere(['UserID' => $userId, 'SubmenuID' => $submenu, 'Delete' => 1])->getFirstRow();
     }
 
     if ($akses) {
@@ -40,6 +38,7 @@ function generateMenu($user_id)
     $builder->join('mst_menu', 'mst_menu.ID = user_access_menu.MenuID');
     $builder->join('mst_submenu', 'mst_submenu.ID = user_access_menu.SubmenuID');
     $builder->where(['user_access_menu.UserID' => $user_id]);
+    $builder->where(['mst_menu.Active' => 1]);
     $builder->where(['user_access_menu.View' => 1]);
     $builder->where(['mst_submenu.Active' => 1, 'Type' => 'Side']);
     $builder->orderBy('mst_menu.ID', 'ASC');

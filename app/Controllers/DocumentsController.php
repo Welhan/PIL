@@ -3,23 +3,28 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\AuthModel;
 use App\Models\DocumentsModel;
+use App\Models\SubmenuModel;
+use App\Models\UserModel;
 
 class DocumentsController extends BaseController
 {
-    protected $AuthModel;
+    protected $userModel;
     protected $DocumentsModel;
+    protected $submenuModel;
 
     public function __construct()
     {
-        $this->AuthModel = new AuthModel;
+        $this->userModel = new UserModel();
         $this->DocumentsModel = new DocumentsModel;
+        $this->submenuModel = new SubmenuModel();
     }
     public function Documents()
     {
         $data = [
+            'title' => 'Documents',
             'Documents' => $this->DocumentsModel->getDocuments(),
+            'active' => $this->submenuModel->find(1)->ID
         ];
 
         return view('Documents/Documents', $data);

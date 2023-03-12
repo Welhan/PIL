@@ -1,12 +1,11 @@
-<?= $this->extend('Layout/Template'); ?>
+<?= $this->extend("Layout/Template"); ?>
 
-<?= $this->section('content'); ?>
-
+<?= $this->section("content"); ?>
 <div class="card mb-4">
     <div class="card-header">
         <div class="text-end">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="fas fa-plus"></i> Add New Document
+                <i class="fas fa-plus"></i> Add New
             </button>
         </div>
     </div>
@@ -14,39 +13,46 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>Driver Name</th>
-                    <th>Destination</th>
-                    <th>Departure Date</th>
-                    <th>Return Date</th>
-                    <th>Police No</th>
-                    <th>Vehicle Type</th>
-                    <th>User</th>
-                    <th>Detail</th>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Division</th>
+                    <th>HP</th>
+                    <th>Active</th>
+                    <th></th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Driver Name</th>
-                    <th>Destination</th>
-                    <th>Departure Date</th>
-                    <th>Return Date</th>
-                    <th>Police No</th>
-                    <th>Vehicle Type</th>
-                    <th>User</th>
-                    <th>Detail</th>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Division</th>
+                    <th>HP</th>
+                    <th>Active</th>
+                    <th></th>
                 </tr>
             </tfoot>
             <tbody>
-                <?php foreach ($Documents as $Document) : ?>
+                <?php
+                $no = 1;
+                foreach ($users as $user) : ?>
                     <tr>
-                        <td><?= $Document->Name ?></td>
-                        <td><?= $Document->Destination ?></td>
-                        <td><?= $Document->Departure ?></td>
-                        <td><?= $Document->Return ?></td>
-                        <td><?= $Document->PoliceNo ?></td>
-                        <td><?= $Document->Vehicle ?></td>
-                        <td><?= $Document->User ?></td>
-                        <td><?= $Document->Description ?></td>
+                        <td><?= $no++; ?></td>
+                        <td><?= ucwords($user->Nama); ?></td>
+                        <td><?= $user->Email; ?></td>
+                        <td><?= $user->divisiName; ?></td>
+                        <td><?= $user->NoHP; ?></td>
+                        <td><?= ($user->Active) ? 'Active' : 'Not Active'; ?></td>
+                        <td>
+                            <form action="/access" method="post">
+                                <?= csrf_field(); ?>
+                                <input type="hidden" name="user_id" value="<?= $user->ID; ?>">
+                                <button type="s" class="btn btn-info btn-sm"><i class="fas fa-tools"></i></button>
+                                <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -118,5 +124,4 @@
         </div>
     </div>
 </div>
-
 <?= $this->endSection(); ?>

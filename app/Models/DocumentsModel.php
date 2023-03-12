@@ -14,7 +14,7 @@ class DocumentsModel extends Model
     public function getDocuments()
     {
         $builder = $this->db->table('documents');
-        $builder->join('users', 'documents.Email = users.Email AND documents.Name = users.Name');
+        $builder->join('users', 'documents.Email = users.Email AND documents.DriverID = users.ID');
         $builder->orderBy('documents.ID', 'DESC');
         return $builder->get()->getResult();
     }

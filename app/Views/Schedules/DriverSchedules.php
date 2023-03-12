@@ -14,7 +14,6 @@
 </head>
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Driver Schedules</h1>
         <div class="card mb-4">
             <div class="card-body mx-auto" style="width: 75%;height: 75%;">
                 <div class="content">
@@ -59,7 +58,7 @@
             events: [
                 <?php foreach ($Schedules as $schedule) : ?> {
                         id: '<?= $schedule->ID; ?>',
-                        title: '<?= $schedule->Name; ?>',
+                        title: '<?= $schedule->Nama; ?>',
                         start: '<?= $schedule->Departure; ?>',
                         end: '<?= $schedule->Return; ?>',
                         backgroundColor: '<?= $schedule->Color; ?>',
