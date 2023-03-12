@@ -8,7 +8,7 @@ class SubmenuModel extends Model
 {
 
     protected $table            = 'mst_submenu';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
     protected $allowedFields    = [];
 }
