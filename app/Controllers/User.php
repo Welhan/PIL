@@ -63,29 +63,29 @@ class User extends BaseController
 
                 if ($flag == 'view') {
                     $data = [
-                        'ID' => $akses[0]->id,
-                        'View' => ($akses[0]->flag_view) ? 0 : 1,
+                        'ID' => $akses[0]->ID,
+                        'View' => ($akses[0]->View) ? 0 : 1,
                         'UserUpdate' => session('ID'),
                         'DateUpdate' => Time::now()
                     ];
                 } elseif ($flag == 'add') {
                     $data = [
-                        'ID' => $akses[0]->id,
-                        'Add' => ($akses[0]->flag_add) ? 0 : 1,
+                        'ID' => $akses[0]->ID,
+                        'Add' => ($akses[0]->Add) ? 0 : 1,
                         'UserUpdate' => session('ID'),
                         'DateUpdate' => Time::now()
                     ];
                 } elseif ($flag == 'edit') {
                     $data = [
-                        'ID' => $akses[0]->id,
-                        'Edit' => ($akses[0]->flag_edit) ? 0 : 1,
+                        'ID' => $akses[0]->ID,
+                        'Edit' => ($akses[0]->Edit) ? 0 : 1,
                         'UserUpdate' => session('ID'),
                         'DateUpdate' => Time::now()
                     ];
                 } elseif ($flag == 'delete') {
                     $data = [
-                        'ID' => $akses[0]->id,
-                        'Delete' => ($akses[0]->flag_delete) ? 0 : 1,
+                        'ID' => $akses[0]->ID,
+                        'Delete' => ($akses[0]->Delete) ? 0 : 1,
                         'UserUpdate' => session('ID'),
                         'DateUpdate' => Time::now()
                     ];

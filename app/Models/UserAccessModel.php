@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class UserAccessModel extends Model
 {
     protected $table            = 'user_access_menu';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
     protected $allowedFields    = ['MenuID', 'SubmenuID', 'UserID', 'View', 'Add', 'Edit', 'Delete', 'UserAdded', 'DateAdded', 'UserUpdate', 'DateUpdate'];
 
